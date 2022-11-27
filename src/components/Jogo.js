@@ -14,7 +14,7 @@ export default function Jogo(props) {
 
     return (
         <>
-            <Imagem src={hanged[1]} />
+            <Imagem src={hanged[props.errors]} />
             <ChooseWordButton setRuning={props.setRuning} setWord={props.setWord} words={props.words} setdashArray={props.setdashArray} />
             <Word dashArray={props.dashArray} />
 

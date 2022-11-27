@@ -16,8 +16,6 @@ function ButtonLetter(props) {
 
     function clickedButton() {
         SetClicked(1);
-        console.log(`${props.letter}`)
-
     }
 
     return (

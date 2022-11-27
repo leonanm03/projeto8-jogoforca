@@ -12,6 +12,7 @@ function App() {
 
   const [word, setWord] = useState(words[Math.floor(Math.random() * words.length)]);
   const [runing, setRuning] = useState(0);
+  const [errors, setErrors] = useState(0)
 
 
   let [letter, setLetter] = useState("");
@@ -21,11 +22,15 @@ function App() {
     <div className="app">
       <Jogo runing={runing} setRuning={setRuning}
         word={word} setWord={setWord}
+        errors={errors}
         letter={letter} words={words} dashArray={dashArray} setdashArray={setdashArray} />
 
       <div className="bottom">
-        <Letras runing={runing} letter={letter} word={word} dashArray={dashArray} setdashArray={setdashArray} setLetter={setLetter} />
-        <Chute runing={runing} />
+        <Letras runing={runing} word={word}
+          letter={letter} setLetter={setLetter}
+          errors={errors} setErrors={setErrors}
+          dashArray={dashArray} setdashArray={setdashArray} />
+        <Chute runing={runing} word={word} setErrors={setErrors} />
       </div>
     </div>
   );

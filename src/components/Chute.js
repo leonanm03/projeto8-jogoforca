@@ -7,22 +7,19 @@ export default function Chute(props) {
 
     function riskWord() {
         let word = props.word;
-        if (word === risk) {
-            alert("Você acertou!");
-        } else {
+        props.setdashArray(props.word.split(""))
+        props.setDone(1);
+        props.setRuning(0)
+        if (word !== risk) {
             props.setErrors(6);
-            setTimeout(() => {
-                alert("Você perdeu!");
-                window.location.reload();
-            }, 500);
         }
     }
 
     return (
         <div className="risk">
             <span className="jaSei"> Já sei a palavra</span>
-            <input disabled={!props.runing} onChange={(e) => setRisk(e.target.value)} type="text" className="riskInput"></input>
-            <button disabled={!props.runing} className="riskButton" onClick={riskWord} >Chutar</button>
+            <input data-test="guess-input" disabled={!props.runing} onChange={(e) => setRisk(e.target.value)} type="text" className="riskInput"></input>
+            <button data-test="guess-button" disabled={!props.runing} className="riskButton" onClick={riskWord} >Chutar</button>
 
         </div>
     );

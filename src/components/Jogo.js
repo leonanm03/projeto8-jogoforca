@@ -15,8 +15,8 @@ export default function Jogo(props) {
     return (
         <>
             <Imagem src={hanged[props.errors]} />
-            <ChooseWordButton setRuning={props.setRuning} setWord={props.setWord} words={props.words} setdashArray={props.setdashArray} />
-            <Word dashArray={props.dashArray} />
+            <ChooseWordButton done={props.done} setRuning={props.setRuning} setWord={props.setWord} words={props.words} setdashArray={props.setdashArray} />
+            <Word dashArray={props.dashArray} done={props.done} errors={props.errors} word={props.word} />
 
         </>
     );
@@ -26,7 +26,7 @@ export default function Jogo(props) {
 function Imagem(props) {
     return (
         <div className="hanged">
-            <img src={props.src} alt={props.src}></img>
+            <img data-test="game-image" src={props.src} alt={props.src}></img>
         </div>
     );
 }
@@ -35,27 +35,31 @@ function ChooseWordButton(props) {
 
 
     function chooseWord() {
-        props.setRuning(1)
-        const words = props.words
-        const random = Math.floor(Math.random() * words.length);
-        const word = words[random]
-        alert(word)
-        props.setWord(word);
-        props.setdashArray(Array(word.length).fill("_"));
+        if (!props.done) {
+            props.setRuning(1)
+            const words = props.words
+            const random = Math.floor(Math.random() * words.length);
+            const word = words[random]
+            props.setWord(word);
+            props.setdashArray(Array(word.length).fill("_"));
+        }
+        else {
+            window.location.reload();
+        }
 
     }
 
 
     return (
-        <button onClick={chooseWord} className="chooseWordButton">
+        <button data-test="choose-word" onClick={chooseWord} className="chooseWordButton">
             Escolher palavra
         </button>
     )
 }
 
 function Word(props) {
-    return <div className="word">
+    return <div data-test="word" data-answer={props.word} className={!props.done ? "word" : props.errors >= 6 ? "word red" : "word green"}>
         {props.dashArray.join(" ")}
-    </div>;
+    </div >;
 }
 

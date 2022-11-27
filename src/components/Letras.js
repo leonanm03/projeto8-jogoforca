@@ -5,9 +5,11 @@ export default function Letras(props) {
 
     return (
         <div className="letters">
-            {alphabet.map((l) => (<ButtonLetter key={l} letter={l} runing={props.runing}
+            {alphabet.map((l) => (<ButtonLetter
+                key={l} letter={l} runing={props.runing}
                 word={props.word} dashArray={props.dashArray} setdashArray={props.setdashArray}
-                errors={props.errors} setErrors={props.setErrors} />))}
+                errors={props.errors} setErrors={props.setErrors} setDone={props.setDone} setRuning={props.setRuning}
+            />))}
         </div>
     );
 }
@@ -25,21 +27,24 @@ function ButtonLetter(props) {
         let setdashArray = props.setdashArray;
 
         if (word.includes(letter)) {
-            console.log("acertou")
             for (let i = 0; i < word.length; i++) {
                 if (word[i] === letter) {
                     dashArray[i] = letter;
                     setdashArray(dashArray);
                 }
             }
+            if (!dashArray.includes("_")) {
+                props.setDone(1);
+                props.setRuning(0)
+            }
         } else {
             let errors = props.errors + 1;
             props.setErrors(errors);
+
             if (errors === 6) {
-                setTimeout(() => {
-                    alert("Você perdeu!");
-                    window.location.reload();
-                }, 500);
+                props.setRuning(0)
+                props.setDone(1);
+                setdashArray(word.split(""))
             }
         }
 
@@ -47,7 +52,7 @@ function ButtonLetter(props) {
     }
 
     return (
-        <button disabled={!props.runing ? true : clicked} onClick={clickedButton}
+        <button data-test="letter" disabled={!props.runing ? true : clicked} onClick={clickedButton}
             className={props.runing && !clicked ? "letterButtonEnabled" : "letterButtonDisabled"}>{props.letter.toUpperCase()}</button>
     )
 }

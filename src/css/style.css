@@ -139,3 +139,11 @@
     font-size: 50px;
     line-height: 68px;
 }
+
+.red{
+    color: rgb(180, 59, 59)
+}
+
+.green{
+    color: rgb(17, 201, 17);
+}

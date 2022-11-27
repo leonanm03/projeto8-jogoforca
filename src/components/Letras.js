@@ -5,7 +5,7 @@ export default function Letras(props) {
 
     return (
         <div className="letters">
-            {alphabet.map((l) => (<ButtonLetter key={l} letter={l} setclicked={props.setclickedletter} />))}
+            {alphabet.map((l) => (<ButtonLetter key={l} letter={l} runing={props.runing} setclicked={props.setclickedletter} />))}
         </div>
     );
 }
@@ -15,14 +15,13 @@ function ButtonLetter(props) {
     const [clicked, SetClicked] = useState(0)
 
     function clickedButton() {
-        console.log(props.setclicked)
         SetClicked(1);
         console.log(`${props.letter}`)
 
     }
 
     return (
-        <button disabled={clicked} onClick={clickedButton}
+        <button disabled={!props.runing ? true : clicked} onClick={clickedButton}
             className={!clicked ? "letterButtonEnabled" : "letterButtonDisabled"}>{props.letter}</button>
     )
 }

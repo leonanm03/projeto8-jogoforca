@@ -8,8 +8,10 @@ import { useState } from "react";
 
 
 function App() {
-  const [word, setWord] = useState(words[Math.floor(Math.random() * words.length)]);
 
+
+  const [word, setWord] = useState(words[Math.floor(Math.random() * words.length)]);
+  const [runing, setRuning] = useState(0);
 
 
   let [letter, setLetter] = useState("");
@@ -17,11 +19,13 @@ function App() {
 
   return (
     <div className="app">
-      <Jogo letter={letter} word={word} dashArray={dashArray} setdashArray={setdashArray} />
+      <Jogo runing={runing} setRuning={setRuning}
+        word={word} setWord={setWord}
+        letter={letter} words={words} dashArray={dashArray} setdashArray={setdashArray} />
 
       <div className="bottom">
-        <Letras letter={letter} word={word} dashArray={dashArray} setdashArray={setdashArray} setLetter={setLetter} />
-        <Chute />
+        <Letras runing={runing} letter={letter} word={word} dashArray={dashArray} setdashArray={setdashArray} setLetter={setLetter} />
+        <Chute runing={runing} />
       </div>
     </div>
   );

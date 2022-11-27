@@ -1,13 +1,6 @@
 import React from "react";
 
 export default function Jogo(props) {
-
-
-
-
-
-
-
     const hanged = [
         "assets/forca0.png",
         "assets/forca1.png",
@@ -17,15 +10,18 @@ export default function Jogo(props) {
         "assets/forca5.png",
         "assets/forca6.png"];
 
+
+
     return (
         <>
             <Imagem src={hanged[1]} />
-            <ChooseWordButton />
-            <Word palavra={"teste"} />
+            <ChooseWordButton setRuning={props.setRuning} setWord={props.setWord} words={props.words} setdashArray={props.setdashArray} />
+            <Word palavra={props.word} />
 
         </>
     );
 }
+
 
 function Imagem(props) {
     return (
@@ -35,8 +31,27 @@ function Imagem(props) {
     );
 }
 
-function ChooseWordButton() {
-    return <button className="chooseWordButton">Escolher palavra</button>;
+function ChooseWordButton(props) {
+
+    function chooseWord() {
+        props.setRuning(1)
+        const words = props.words
+        console.log(words)
+        const random = Math.floor(Math.random() * words.length);
+        const word = words[random]
+        console.log(word);
+        props.setWord(word);
+        console.log(props.word);
+        props.setdashArray(Array(word.length).fill("_"));
+
+    }
+
+
+    return (
+        <button onClick={chooseWord} className="chooseWordButton">
+            Escolher palavra
+        </button>
+    )
 }
 
 function Word(props) {

@@ -1,20 +1,6 @@
 import React from "react";
 
 export default function Jogo(props) {
-    let palavra = 'BANANA';
-    let palavraArray = Array(palavra.length).fill("_")
-    let palavraString = ""
-
-
-    const guess = "N";
-    if (guess) {
-        for (let i = 0; i < palavra.length; i++) {
-            if (palavra[i] === guess) {
-                palavraArray[i] = guess;
-            }
-        }
-        palavraString = palavraArray.join(" ")
-    }
 
 
 
@@ -22,21 +8,20 @@ export default function Jogo(props) {
 
 
 
-    const hangedSrc = [
-        { state0: "assets/forca0.png" },
-        { state1: "assets/forca1.png" },
-        { state2: "assets/forca2.png" },
-        { state3: "assets/forca3.png" },
-        { state4: "assets/forca4.png" },
-        { state5: "assets/forca5.png" },
-        { state6: "assets/forca6.png" },
-    ];
+    const hanged = [
+        "assets/forca0.png",
+        "assets/forca1.png",
+        "assets/forca2.png",
+        "assets/forca3.png",
+        "assets/forca4.png",
+        "assets/forca5.png",
+        "assets/forca6.png"];
 
     return (
         <>
-            <Imagem src={hangedSrc[0].state0} />
+            <Imagem src={hanged[1]} />
             <ChooseWordButton />
-            <Word palavra={palavraString} />
+            <Word palavra={"teste"} />
 
         </>
     );

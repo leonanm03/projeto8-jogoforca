@@ -16,7 +16,7 @@ export default function Jogo(props) {
         <>
             <Imagem src={hanged[1]} />
             <ChooseWordButton setRuning={props.setRuning} setWord={props.setWord} words={props.words} setdashArray={props.setdashArray} />
-            <Word palavra={props.word} />
+            <Word dashArray={props.dashArray} />
 
         </>
     );
@@ -33,15 +33,14 @@ function Imagem(props) {
 
 function ChooseWordButton(props) {
 
+
     function chooseWord() {
         props.setRuning(1)
         const words = props.words
-        console.log(words)
         const random = Math.floor(Math.random() * words.length);
         const word = words[random]
-        console.log(word);
+        alert(word)
         props.setWord(word);
-        console.log(props.word);
         props.setdashArray(Array(word.length).fill("_"));
 
     }
@@ -56,7 +55,7 @@ function ChooseWordButton(props) {
 
 function Word(props) {
     return <div className="word">
-        {props.palavra}
+        {props.dashArray.join(" ")}
     </div>;
 }
 

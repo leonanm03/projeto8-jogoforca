@@ -17,7 +17,7 @@ export default function Jogo(props) {
             <Imagem src={hanged[props.errors]} />
 
             <ChooseWordButton
-                done={props.done} setDone={props.setDone}
+                setDone={props.setDone}
                 runing={props.runing} setRuning={props.setRuning}
                 setErrors={props.setErrors} setWord={props.setWord}
                 words={props.words} setdashArray={props.setdashArray} setClickedLetters={props.setClickedLetters} />
@@ -41,7 +41,7 @@ function ChooseWordButton(props) {
 
 
     function chooseWord() {
-        if (!props.runing || props.done) {
+        if (!props.runing) {
             props.setErrors(0)
             props.setDone(0)
             props.setClickedLetters([])

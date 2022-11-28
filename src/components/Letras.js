@@ -5,23 +5,19 @@ export default function Letras(props) {
     return (
         <div className="letters">
             {alphabet.map((l) => (<ButtonLetter
-                errors={props.errors} setErrors={props.setErrors} setDone={props.setDone}
-                key={l} letter={l} word={props.word}
+                errors={props.errors} setErrors={props.setErrors}
                 runing={props.runing} setRuning={props.setRuning}
                 dashArray={props.dashArray} setdashArray={props.setdashArray}
                 clickedLetters={props.clickedLetters} setClickedLetters={props.setClickedLetters}
+                setDone={props.setDone} word={props.word}
+                key={l} letter={l}
             />))}
         </div>
     );
 }
 
 function ButtonLetter(props) {
-
-    // const [clicked, SetClicked] = useState(0)
-
     function clickedButton() {
-        // SetClicked(1);
-
 
         let word = props.word;
         const letter = props.letter

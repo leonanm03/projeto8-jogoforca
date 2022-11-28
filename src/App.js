@@ -29,14 +29,14 @@ function App() {
 
       <div className="bottom">
         <Letras
-          word={word} setDone={setDone}
           runing={runing} setRuning={setRuning}
           errors={errors} setErrors={setErrors}
           dashArray={dashArray} setdashArray={setdashArray}
-          clickedLetters={clickedLetters} setClickedLetters={setClickedLetters} />
+          clickedLetters={clickedLetters} setClickedLetters={setClickedLetters}
+          word={word} setDone={setDone} />
 
-        <Chute runing={runing} setRuning={setRuning}
-          word={word} setErrors={setErrors} setdashArray={setdashArray} setDone={setDone} />
+        <Chute setRuning={setRuning} word={word} setErrors={setErrors}
+          setdashArray={setdashArray} setDone={setDone} />
       </div>
     </div>
   );

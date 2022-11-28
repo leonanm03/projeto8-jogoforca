@@ -14,11 +14,10 @@
 }
 
 .hanged>img {
-    width: 400px;
-    height: 466.67px;
+    height: 30vw;
     position: absolute;
-    top: 59px;
-    left: 38px;
+    top: 20px;
+    left: 20px;
 }
 
 .chooseWordButton {
@@ -140,10 +139,10 @@
     line-height: 68px;
 }
 
-.red{
+.red {
     color: rgb(180, 59, 59)
 }
 
-.green{
+.green {
     color: rgb(17, 201, 17);
 }

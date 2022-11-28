@@ -35,7 +35,7 @@ function App() {
           clickedLetters={clickedLetters} setClickedLetters={setClickedLetters}
           word={word} setDone={setDone} />
 
-        <Chute setRuning={setRuning} word={word} setErrors={setErrors}
+        <Chute runing={runing} setRuning={setRuning} word={word} setErrors={setErrors}
           setdashArray={setdashArray} setDone={setDone} />
       </div>
     </div>

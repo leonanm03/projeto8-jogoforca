@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 export default function Letras(props) {
     const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -6,9 +5,11 @@ export default function Letras(props) {
     return (
         <div className="letters">
             {alphabet.map((l) => (<ButtonLetter
-                key={l} letter={l} runing={props.runing}
-                word={props.word} dashArray={props.dashArray} setdashArray={props.setdashArray}
-                errors={props.errors} setErrors={props.setErrors} setDone={props.setDone} setRuning={props.setRuning}
+                errors={props.errors} setErrors={props.setErrors} setDone={props.setDone}
+                key={l} letter={l} word={props.word}
+                runing={props.runing} setRuning={props.setRuning}
+                dashArray={props.dashArray} setdashArray={props.setdashArray}
+                clickedLetters={props.clickedLetters} setClickedLetters={props.setClickedLetters}
             />))}
         </div>
     );
@@ -16,13 +17,16 @@ export default function Letras(props) {
 
 function ButtonLetter(props) {
 
-    const [clicked, SetClicked] = useState(0)
+    // const [clicked, SetClicked] = useState(0)
 
     function clickedButton() {
-        SetClicked(1);
+        // SetClicked(1);
+
 
         let word = props.word;
         const letter = props.letter
+        const clickedLetters = [...props.clickedLetters, letter]
+        props.setClickedLetters(clickedLetters)
         let dashArray = [...props.dashArray];
         let setdashArray = props.setdashArray;
 
@@ -52,7 +56,7 @@ function ButtonLetter(props) {
     }
 
     return (
-        <button data-test="letter" disabled={!props.runing ? true : clicked} onClick={clickedButton}
-            className={props.runing && !clicked ? "letterButtonEnabled" : "letterButtonDisabled"}>{props.letter.toUpperCase()}</button>
+        <button data-test="letter" disabled={!props.runing ? true : props.clickedLetters.includes(props.letter)} onClick={clickedButton}
+            className={props.runing && !props.clickedLetters.includes(props.letter) ? "letterButtonEnabled" : "letterButtonDisabled"}>{props.letter.toUpperCase()}</button>
     )
 }

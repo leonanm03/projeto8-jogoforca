@@ -15,7 +15,13 @@ export default function Jogo(props) {
     return (
         <>
             <Imagem src={hanged[props.errors]} />
-            <ChooseWordButton done={props.done} setRuning={props.setRuning} setWord={props.setWord} words={props.words} setdashArray={props.setdashArray} />
+
+            <ChooseWordButton
+                done={props.done} setDone={props.setDone}
+                runing={props.runing} setRuning={props.setRuning}
+                setErrors={props.setErrors} setWord={props.setWord}
+                words={props.words} setdashArray={props.setdashArray} setClickedLetters={props.setClickedLetters} />
+
             <Word dashArray={props.dashArray} done={props.done} errors={props.errors} word={props.word} />
 
         </>
@@ -35,16 +41,18 @@ function ChooseWordButton(props) {
 
 
     function chooseWord() {
-        if (!props.done) {
-            props.setRuning(1)
+        if (!props.runing || props.done) {
+            props.setErrors(0)
+            props.setDone(0)
+            props.setClickedLetters([])
+
             const words = props.words
             const random = Math.floor(Math.random() * words.length);
             const word = words[random]
             props.setWord(word);
             props.setdashArray(Array(word.length).fill("_"));
-        }
-        else {
-            window.location.reload();
+
+            props.setRuning(1)
         }
 
     }
